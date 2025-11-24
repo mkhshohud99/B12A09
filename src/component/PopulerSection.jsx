@@ -19,27 +19,29 @@ const PopulerSection = () => {
         <div className='mt-8 px-[145px]'>
             <div>
                 <h3 className='font-bold text-3xl text-center'>Popular pet Section</h3>
-                {
-                    services.map(service =>
-                        <div className="card bg-base-100 w-96 shadow-sm">
-                            <figure>
-                                <img
-                                    src={service?.image}
-                                    alt="Pet Image" />
-                            </figure>
-                            <div className="card-body">
-                                <h2 className="card-title">{service?.serviceName}</h2>
-                                <div>
-                                    <p>Peice: {service?.price}</p>
-                                    <p>Ratings: {service?.rating}</p>
-                                </div>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">View Details</button>
+                <div className='grid grid-cols-3 mt-12 gap-10'>
+                    {
+                        services.map(service =>
+                            <div className="card bg-base-100 w-96 shadow-sm">
+                                <figure>
+                                    <img className='h-[300px] w-full object-cover'
+                                        src={service?.image}
+                                        alt="Pet Image" />
+                                </figure>
+                                <div className="card-body">
+                                    <h2 className="card-title">{service?.serviceName}</h2>
+                                    <div className='flex justify-between text-lg'>
+                                        <p>Price: <span className='font-bold'>${service?.price}</span></p>
+                                        <p className='text-end'>Ratings: {service?.rating}</p>
+                                    </div>
+                                    <div className="card-actions justify-end mt-5">
+                                        <button className="btn btn-primary">View Details</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                }
+                        )
+                    }
+                </div>
             </div>
         </div>
     );
