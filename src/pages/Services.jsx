@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const Services = () => {
     const [services, setServices] = useState([]);
+
 
     useEffect(() => {
         fetch('./services.json')
@@ -26,7 +28,7 @@ const Services = () => {
                                 <p className='text-end'>Ratings: {service?.rating}</p>
                             </div>
                             <div className="card-actions justify-end mt-5">
-                                <button className="btn btn-primary">View Details</button>
+                                <Link to={`/details/${service?.serviceId}`}><button className="btn btn-primary">View Details</button></Link>
                             </div>
                         </div>
                     </div>

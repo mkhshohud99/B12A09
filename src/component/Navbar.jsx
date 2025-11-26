@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../provider/AuthProvider';
+import { signOut } from 'firebase/auth';
+import auth from '../firebase/firebase.config';
 
 const Navbar = () => {
+
+    const {user} = useContext(AuthContext);
+
+    const handleLogOut =() =>{
+        signOut(auth)
+    }
+
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
@@ -14,7 +24,7 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                         <li><Link to={'/'}>Home</Link></li>
                         <li><Link>Services</Link></li>
-                        <li><Link>My Profile</Link></li>
+                        <li><Link to='profile'>My Profile</Link></li>
                     </ul>
                 </div>
                 <Link to={'/'} className="btn btn-ghost text-xl">PetPaw</Link>
@@ -23,12 +33,20 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to={'/'}>Home</Link></li>
                     <li><Link to={'/services'}>Services</Link></li>
-                    <li><Link>My Profile</Link></li>
+                    <li><Link to='profile'>My Profile</Link></li>
                 </ul>
             </div>
-            <div className="navbar-end">
+            {
+                user && <div className="navbar-end">
+                <button onClick={handleLogOut} className="btn"><Link to={'/'}>Log Out</Link></button>
+            </div>
+            }
+            {
+                !user && <div className="navbar-end">
                 <Link to={'/login'} className="btn">Login</Link>
             </div>
+            }
+            
         </div>
     );
 };

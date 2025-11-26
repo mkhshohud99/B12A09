@@ -30,8 +30,8 @@ const MeetOurExparts = () => {
 
             <div className='grid grid-cols-3 mt-12 gap-10'>
                 {
-                    vets.map((vet) =>
-                        <div className="card bg-base-100 w-96 shadow-sm">
+                    vets.map((vet) => 
+                        <div  className="card bg-base-100 w-96 shadow-sm">
                             <figure>
                                 <img className='h-[300px] w-full object-cover'
                                     src={vet?.image}
