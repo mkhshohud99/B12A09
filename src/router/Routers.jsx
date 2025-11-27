@@ -7,11 +7,14 @@ import Register from "../pages/Register";
 import PrivetRout from "./PrivetRout";
 import Profile from "../pages/Profile";
 import ServiceDetails from "../pages/ServiceDetails";
+import FoprgetPass from "../pages/FoprgetPass";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
+    errorElement: <Error></Error>,
     children:[
         {
             path:'/',
@@ -36,6 +39,10 @@ const router = createBrowserRouter([
         {
             path: '/details/:id',
             element: <PrivetRout><ServiceDetails></ServiceDetails></PrivetRout>
+        },
+        {
+            path: '/forgetPass/:email',
+            Component: FoprgetPass,
         }
     ]
   },

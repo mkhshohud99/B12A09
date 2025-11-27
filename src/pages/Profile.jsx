@@ -10,8 +10,7 @@ const Profile = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenForm = () => {
-        setIsOpen(!isOpen);
-        console.log(isOpen);
+        setIsOpen(!isOpen)
     }
 
     const handleUpdate = (e) => {
@@ -24,7 +23,7 @@ const Profile = () => {
         }).then(() => {
             setUser({ ...user, photoURL: photoUrl, displayName: name })
         }).catch((err) => {
-            alert(err)
+            console.log(err)
         });
     }
     return (
@@ -39,13 +38,16 @@ const Profile = () => {
             <button onClick={handleOpenForm} className="btn">Update Profile</button>
             {
                 isOpen && (
-                    <form onSubmit={handleUpdate} className="fieldset">
-                        <label className="label">Name</label>
-                        <input defaultValue={user?.displayName} name='name' type="text" className="input" placeholder="Your Name" />
-                        <label className="label">PhotoURL</label>
-                        <input defaultValue={user?.photoURL} name='photoUrl' type="text" className="input" placeholder="Past PhotoURL" />
-                        <button className="btn btn-neutral mt-4">Update</button>
-                    </form>
+                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl p-5 my-5">
+                        <div className="card-body"></div>
+                        <form onSubmit={handleUpdate} className="fieldset">
+                            <label className="label">Name</label>
+                            <input defaultValue={user?.displayName} name='name' type="text" className="input" placeholder="Your Name" />
+                            <label className="label">PhotoURL</label>
+                            <input defaultValue={user?.photoURL} name='photoUrl' type="text" className="input" placeholder="Past PhotoURL" />
+                            <button className="btn btn-neutral mt-4">Update</button>
+                        </form>
+                    </div>
                 )
             }
 

@@ -15,6 +15,21 @@ const Register = () => {
         const pass = e.target.password.value;
         const name = e.target.name.value;
         const photoUrl = e.target.photoUrl.value;
+
+        const upperCase =/[A-Z]/;
+        const lowerCase =/[a-z]/;
+        if(pass.length){
+            return alert('Password must have 6 letter');
+        }
+        if(!upperCase.test(pass)){
+            return alert('Password must have Uppercase letter');
+        }
+        if(!lowerCase.test(pass)){
+            return alert('Password must have Lowercase letter');
+        }
+
+
+
         registerWithEmailAndPassword(email, pass)
             .then((userCredential) => {
                 updateProfile(auth.currentUser, {
@@ -22,11 +37,11 @@ const Register = () => {
                 }).then(() => {
                     setUser(userCredential)
                 }).catch((err) => {
-                    alert(err)
+                    console.log(err)
                 });
             })
             .catch((err) => {
-                alert(err)
+                console.log(err)
             });
     }
 
@@ -37,7 +52,7 @@ const Register = () => {
                 setUser(user);
             })
             .catch((err) => {
-                alert(err)
+                console.log(err)
             })
     }
 
@@ -56,7 +71,7 @@ const Register = () => {
                             <input name='password' type="password" className="input" placeholder="Password" />
                             <label className="label">Photo URL</label>
                             <input name='photoUrl' type="text" className="input" placeholder="Past Photo URL" />
-                            <div><Link className="link link-hover">Forgot password?</Link></div>
+                            <div><Link to="/forgetPass" className="link link-hover">Forgot password?</Link></div>
                             <button onClick={googleSignin} className="btn"><FcGoogle /> Signup with google</button>
                             <div><span>Already have an account?</span> <Link className='text-blue-500' to={'/login'}>Login</Link></div>
                             <button className="btn btn-neutral mt-4">Register</button>
